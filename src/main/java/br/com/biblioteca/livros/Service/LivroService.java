@@ -15,7 +15,7 @@ public class LivroService {
     @Autowired
     private LivroRepository livroRepository;
 
-    public List<Livro> findAll(){
+    public List<Livro> findAll() {
         return livroRepository.findAll();
     }
 
@@ -24,7 +24,7 @@ public class LivroService {
         return obj.orElse(null);
     }
 
-    public String findByLivroNome(Long idLivro){
+    public String findByLivroNomeId(Long idLivro) {
 
         List<Livro> livros = livroRepository.findAll();
         List<Livro> streamLivros = livros.stream().flatMap(livro -> livros.stream()).collect(Collectors.toList());
@@ -38,5 +38,11 @@ public class LivroService {
         return nomeLivro.getNome();
     }
 
+    public Livro findByLivroNome(String nomeLivro) {
+
+        Livro livro = livroRepository.findByNome(nomeLivro);
+
+        return livro;
+    }
 
 }

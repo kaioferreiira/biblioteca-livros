@@ -33,9 +33,18 @@ public class LivroResource {
 
     @GetMapping(value="/nome/{id}")
     public ResponseEntity<String> findNomeId(@PathVariable Long id){
-        String livro = livroService.findByLivroNome(id);
+        String livro = livroService.findByLivroNomeId(id);
         return ResponseEntity.ok().body(livro);
     }
+
+    @GetMapping(value="/livrosnome/{nome}")
+    public ResponseEntity<String> findByNome(@PathVariable String nome){
+
+        Livro livro = livroService.findByLivroNome(nome);
+
+        return ResponseEntity.ok().body(livro.toString());
+    }
+
 
 
 }
